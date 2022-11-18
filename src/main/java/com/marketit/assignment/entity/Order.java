@@ -37,6 +37,18 @@ public class Order implements Serializable {
     @LastModifiedDate
     private LocalDateTime modified;
 
+    Order() {}
+
+    @Builder
+    public Order(Long id,
+                 List<OrderItem> orderItemList,
+                 OrderStatus orderStatus) {
+        this.id = id;
+        this.orderItemList = orderItemList;
+        this.orderStatus = orderStatus;
+    }
+
+
     public void updateOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }

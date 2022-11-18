@@ -1,6 +1,7 @@
 package com.marketit.assignment.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -24,5 +25,14 @@ public class OrderItem implements Serializable {
 
     @Column
     private int cnt;
+    OrderItem() {}
 
+    @Builder
+    public OrderItem(Long id,
+                     String name,
+                     Order order) {
+        this.id = id;
+        this.name = name;
+        this.order = order;
+    }
 }
