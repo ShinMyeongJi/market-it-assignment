@@ -1,4 +1,4 @@
-package com.marketit.assignment.service;
+package com.marketit.assignment.controller;
 
 
 import com.marketit.assignment.entity.Order;
@@ -6,6 +6,7 @@ import com.marketit.assignment.entity.OrderItem;
 import com.marketit.assignment.entity.OrderStatus;
 import com.marketit.assignment.repository.OrderItemRepository;
 import com.marketit.assignment.repository.OrderRepository;
+import com.marketit.assignment.service.OrderService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @SpringBootTest
 @Transactional
 @AutoConfigureMockMvc
-public class OrderServiceTests {
+public class OrderControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @MockBean
-    private OrderService orderService;
 
     @Autowired
     private OrderRepository orderRepository;
