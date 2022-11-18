@@ -5,7 +5,6 @@ import com.marketit.assignment.entity.Order;
 import com.marketit.assignment.entity.OrderStatus;
 import com.marketit.assignment.exception.CustomException;
 import com.marketit.assignment.exception.types.OrderExceptionTypes;
-import com.marketit.assignment.repository.OrderItemRepository;
 import com.marketit.assignment.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +20,6 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final OrderItemRepository orderItemRepository;
 
     @Transactional
     public void acceptOrder(Long id) {
@@ -45,7 +44,10 @@ public class OrderService {
         return new OrderResponseDTO(order);
     }
 
-    public List<Order> getOrders() {
-        return (List<Order>) orderRepository.findAll();
+    public List<OrderResponseDTO> getOrders() {
+        List<Order> orders = orderRepository.findAll();
+        return orders.stream()
+                .map(OrderResponseDTO::new)
+                .collect(Collectors.toList());
     }
 }

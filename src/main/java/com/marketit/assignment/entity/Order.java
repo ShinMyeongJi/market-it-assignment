@@ -25,7 +25,7 @@ public class Order implements Serializable {
     @Column(name = "order_id")
     private Long id;
 
-    @OneToMany(mappedBy = "order",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItemList = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
@@ -37,21 +37,7 @@ public class Order implements Serializable {
     @LastModifiedDate
     private LocalDateTime modified;
 
-    Order() {}
-
-    @Builder
-    public Order(Long id,
-                 List<OrderItem> orderItemList,
-                 OrderStatus orderStatus) {
-        this.id = id;
-        this.orderItemList = orderItemList;
-        this.orderStatus = orderStatus;
-    }
-
-
     public void updateOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
-
-
 }

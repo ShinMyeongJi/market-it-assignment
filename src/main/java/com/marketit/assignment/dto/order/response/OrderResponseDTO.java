@@ -15,13 +15,13 @@ public class OrderResponseDTO {
 
     private Long id;
     private OrderStatus orderStatus;
-    private List<String> orderItems;
+    private List<OrderItemResponseDTO> orderItems;
 
     public OrderResponseDTO(Order order) {
         this.id = order.getId();
         this.orderStatus = order.getOrderStatus();
         this.orderItems = order.getOrderItemList().stream()
-                .map(OrderItem::getName)
+                .map(OrderItemResponseDTO::new)
                 .collect(Collectors.toList());
     }
 }

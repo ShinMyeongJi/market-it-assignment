@@ -1,6 +1,6 @@
 package com.marketit.assignment.entity;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -18,19 +18,11 @@ public class OrderItem implements Serializable {
     @Column
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 
-    OrderItem() {}
-
-    @Builder
-    public OrderItem(Long id,
-                     String name,
-                     Order order) {
-        this.id = id;
-        this.name = name;
-        this.order = order;
-    }
+    @Column
+    private int cnt;
 
 }
